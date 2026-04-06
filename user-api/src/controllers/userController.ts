@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
 import { users, User } from "../data/users";
 
-//GET /users?role=admin
+// Returns users filtered by role, or all users when role=all.
 export const getUsers = (req: Request, res: Response) => {
-  //GET
   const role = req.query.role as string;
 
   if (!role) {
@@ -27,7 +26,7 @@ export const getUsers = (req: Request, res: Response) => {
   return res.status(200).json(filteredUsers);
 };
 
-//POST /users
+// Creates a new user in the users array.
 export const createUser = (req: Request, res: Response) => {
   const { name, role } = req.body;
 
@@ -48,8 +47,9 @@ export const createUser = (req: Request, res: Response) => {
   });
 };
 
-//PATCH /users/:id
+// Updates selected user fields by id.
 export const updateUser = (req: Request, res: Response) => {
+  // Normalize id in case the framework provides a string array.
   const rawId = req.params.id;
   const userId = parseInt(Array.isArray(rawId) ? rawId[0] : rawId, 10);
   const { name, role }: Partial<User> = req.body;
@@ -74,8 +74,9 @@ export const updateUser = (req: Request, res: Response) => {
   });
 };
 
-//DELETE /users/:id
+// Deletes a user by id from the users array.
 export const deleteUser = (req: Request, res: Response) => {
+  // Normalize id in case the framework provides a string array.
   const rawId = req.params.id;
   const userId = parseInt(Array.isArray(rawId) ? rawId[0] : rawId, 10);
 
