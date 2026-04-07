@@ -23,7 +23,6 @@ Current capabilities:
 
 ## Project Structure
 
-```text
 user-api/
   src/
     index.ts
@@ -33,15 +32,12 @@ user-api/
       userController.ts
     data/
       users.ts
-```
 
 ## API Base URL
 
 By default, the server runs on:
 
-```text
 http://localhost:3000
-```
 
 Routes are mounted at `/users`.
 
@@ -117,8 +113,3 @@ Success response:
 Possible errors:
 
 - `404` if user does not exist
-
-## Notes
-
-- Data is stored in memory in `user-api/src/data/users.ts` and resets whenever the server restarts.
-- The default port is `3000` (defined in `user-api/src/index.ts`).
